@@ -1,57 +1,64 @@
-# Project Name
+# The Cloud Album Web App with Storage
 
-(short, 1-3 sentenced, description of the project)
-
-## Features
-
-This project framework provides the following features:
-
-* Feature 1
-* Feature 2
-* ...
+A basic album web app for displaying and uploading pictures. Uses Azure App Services web app and Storage account.
 
 ## Getting Started
 
 ### Prerequisites
+- .NET 5.0 or above. [Download](https://dotnet.microsoft.com/download)
+- Azure CLI. [Install](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
 
 ### Quickstart
-(Add steps to get up and running quickly)
 
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
+1. login to your Azure subscription
+    ```
+    az login
+    az account set --s {Azure_subscription_ID}
+    ```
+
+2. clone this repository and change the working directory to this project folder.
+    ```
+    git clone https://github.com/Azure-Samples/changeanalysis-webapp-storage-sample.git
+    cd changeanalysis-webapp-storage-sample
+    ```
+
+3. Create and deploy the web app. Take a note of the resource group created if you want to deploy your storage account there too
+    ```
+    az webapp up --name {webapp_name} --sku S2 --location eastus
+    ```
+
+4. Create storage account
+    ```
+    az storage account create --name {storage_name} --resource-group {resourcegroup_name} --sku Standard_RAGRS --https-only
+    ```
+
+5. Show storage account connection string
+    ```
+    az storage account show-connection-string -g {resourcegroup_name} -n {storage_name}
+    ```
+
+6. Connect web app to storage account through App Settings
+    ```
+    az webapp config appsettings set -g {resourcegroup_name} -n {webapp_name} --settings AzureStorageConnection={storage_connectionstring_from_previous_step}
+    ```
 
 
 ## Demo
 
-A demo app is included to show how to use the project.
+Launch your web app. You can see a carousel of images displaying slide shows similar to the following:
 
-To run the demo, follow these steps:
+![Web App home page](./media/screenshot1.jpg)
 
-(Add steps to start up the demo)
+Click on **Upload Picture** on to the navigation bar. Upload your own picture and see it displaying in the album.
 
-1.
-2.
-3.
+![Upload your picture](./media/screenshot2.jpg)
 
-## Resources
+## Clean up
 
-(Any additional resources or related projects)
+Delete the resource group
 
-- Link to supporting information
-- Link to similar sample
-- ...
+    
+    az group delete -n {resourcegroup_name}
+    
+
