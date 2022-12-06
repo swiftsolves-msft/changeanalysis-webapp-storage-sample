@@ -5,7 +5,7 @@ A basic album web app for displaying and uploading pictures. Uses Azure App Serv
 ## Getting Started
 
 ### Prerequisites
-- .NET 5.0 or above. [Download](https://dotnet.microsoft.com/download)
+- .NET 7.0 or above. [Download](https://dotnet.microsoft.com/download)
 - Azure CLI. [Install](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
 
