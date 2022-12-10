@@ -1,6 +1,6 @@
 # The Cloud Album Web App with Storage
 
-A basic album web app for displaying and uploading pictures. Uses Azure App Services web app and Storage account.
+A basic album web app for displaying and uploading pictures. Uses Azure App Services web app and Storage account. The Storage account is secured through a VNET.
 
 ## Getting Started
 
@@ -11,36 +11,17 @@ A basic album web app for displaying and uploading pictures. Uses Azure App Serv
 
 ### Quickstart
 
-1. login to your Azure subscription
-    ```
-    az login
-    az account set --s {Azure_subscription_ID}
-    ```
-
-2. clone this repository and change the working directory to this project folder.
+1. clone this repository and change the working directory to this project folder.
     ```
     git clone https://github.com/Azure-Samples/changeanalysis-webapp-storage-sample.git
     cd changeanalysis-webapp-storage-sample
     ```
 
-3. Create and deploy the web app. Take a note of the resource group created if you want to deploy your storage account there too
-    ```
-    az webapp up --name {webapp_name} --sku S2 --location eastus
-    ```
+2. Open **Publish-WebApp.ps1**. Edit the *SUBSCRIPTION_ID* and *LOCATION* environment variables.
 
-4. Create storage account
+3. Run the script from the current project folder *changeanalysis-webapp-storage-sample*
     ```
-    az storage account create --name {storage_name} --resource-group {resourcegroup_name} --sku Standard_RAGRS --https-only
-    ```
-
-5. Show storage account connection string
-    ```
-    az storage account show-connection-string -g {resourcegroup_name} -n {storage_name}
-    ```
-
-6. Connect web app to storage account through App Settings
-    ```
-    az webapp config appsettings set -g {resourcegroup_name} -n {webapp_name} --settings AzureStorageConnection={storage_connectionstring_from_previous_step}
+    ./Publish-WebApp.ps1
     ```
 
 
