@@ -79,7 +79,6 @@ az webapp config appsettings set -g $RESOURCE_GROUP -n $WEBAPP_NAME --settings A
 
 
 #Build Web App
-#dotnet build WebAppStorageAlbum.csproj /nologo /p:PublishProfile=Release /p:PackageLocation=".\package" /p:OutDir=".\package" /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /maxcpucount:1 /p:platform="Any CPU" /p:configuration="Release" /p:DesktopBuildPackageLocation=".\package\package.zip"
 dotnet publish
 Compress-Archive -Path .\bin\Debug\net7.0\publish\* -DestinationPath .\deploy.zip
 #Deploy Web App
